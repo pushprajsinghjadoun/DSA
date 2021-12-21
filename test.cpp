@@ -1,105 +1,19 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-class node{
-    public:
-    int data;
-    node* next;
-    
-    node(int val)
-    {
-        data = val;
-        next =NULL;
-
-    }
-};
-void insertattail(node* &head,int val)
+bool validTicTacToe(vector<string>& board)
 {
-    node*n = new node(val);
-    node*temp = head;
-    if(head==NULL)
+    for(int i =0;i<board.size();i++)
     {
-        head = n;
-        return;
+        
     }
-    
-    while (temp->next!=NULL)
-    {
-        temp = temp->next;
-    }
-    
-    temp->next = n;
-    
-
+    return false;
 }
-void insertathead(node* &head, int val)
-{
-    
-    node*n = new node(val);
-    node*temp = head;
-    if(head==NULL)
-    {
-        head = n;
-    }
-    n->next = temp;
-    head = n;
-}
-void display(node* &head)
-{
-    node*temp = head;
-    while (temp!=NULL)
-    {
-        cout<<temp->data<<" ";
-        temp = temp->next;
-    }
-    cout<<endl;
-    
-}
-node* reverse(node* head)
-{
-    node*currptr = head;
-    node*prev = NULL;
-    node* nextptr;
-    while (currptr!=NULL)
-    {
-        nextptr = currptr->next;
-        currptr->next = prev;
-        prev = currptr;
-        currptr = nextptr;
-
-    }
-    return prev;
-    
-
-}
-void sums(node* &head)
-{
-    node*temp = head;
-    int sum =0;
-    while (temp!=NULL)
-    {
-        cout<<temp->data<<" ";
-        sum+=temp->data;
-        temp = temp->next;
-    }
-    cout<<sum<<endl;
-    
-}
-
-
 
 int main()
 {
-    node*head = NULL;
-    insertattail(head,4);
-    insertattail(head,2);
-    insertattail(head,3);
-    insertattail(head,4);
-    insertattail(head,5);
-    
-    // node* newhead = reverse(head);
-    // display(newhead);
-    // 
-    sums(head);
+    vector<string> v={"XOX","O O","XOX"};
+    cout<<validTicTacToe(v);
     return 0;
+    
 }

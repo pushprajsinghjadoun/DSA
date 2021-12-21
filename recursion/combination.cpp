@@ -19,8 +19,8 @@ void printKLengthString(char set[], string sequence, int n, int k)
 int main()
 {
     
-   char set[] = {'1', '2','3','4','5'};
-   int n = 5;
+   char set[] = {'1', '2','3'};
+   int n = 3;
    int k = 3;
    printKLengthString(set, "", n, k);
     return 0;

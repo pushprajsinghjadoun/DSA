@@ -60,8 +60,8 @@ void inorderprint(node* root)
 }
 int main()
 {
-    int postorder[] = {4,2,5,3,1};
-    int inorder[] = {4,2,1,5,3};
+    int postorder[] = {9,15,7,20,3};
+    int inorder[] = {9,3,15,20,7};
     node* root = buildetree(postorder,inorder,0,4);
     inorderprint(root);
     cout<<endl;

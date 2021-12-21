@@ -54,6 +54,76 @@ void dfs(int src,vector<int> g[],int dest)
 	dfshelper(src,g,visit);
 }
 
+void topohelper(int node,vector<bool> &visit,stack<int> &s,vector<int> g[])
+{
+	visit[node]=true;
+	for(auto i= g[node].begin();i!=g[node].end();i++)
+	{
+		if(!visit[*i])
+		{
+			topohelper(*i,visit,s,g);
+		}
+	}
+	s.push(node);
+}
+
+
+void topo(vector<int> g[],int n)
+{
+	stack<int> s;
+	vector<bool> visit(n,false);
+
+	for(int i=0;i<n;i++)
+	{
+		if(visit[i]==false)
+		{
+			topohelper(i,visit,s,g);
+		}
+	}
+	while (!s.empty())
+	{
+		cout<<s.top()<<" ";
+		s.pop();
+	}
+	
+}
+
+bool cyclehelper(int node, vector<int> g[],int p, vector<bool>&visit)
+{
+	visit[node] = true;
+	for(auto i = g[node].begin();i!=g[node].end();i++)
+	{
+		if(!visit[*i])
+		{
+			if(cyclehelper(*i,g,node,visit))
+			{
+				return true;
+			}
+		}else if(*i!=p)
+		{
+			return true;
+		}
+		
+	}
+	return false;
+}
+
+bool cycle(int n,vector<int> g[])
+{
+	vector<bool> visit(n,false);
+	
+	for(int i=0;i<n;i++)
+	{
+		if(!visit[i])
+		{
+			if(cyclehelper(i,g,-1,visit))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
 
 int main()
 {
@@ -74,9 +144,12 @@ int main()
     // addEdge(g,2, 0);
     // addEdge(g,2, 3);
     // addEdge(g,3, 3);
-    bfs(g,2,7);
-	cout<<endl;
-	dfs(2,g,7);
+    // bfs(g,2,7);
+	// cout<<endl;
+	// dfs(2,g,7);
+	// cout<<endl;
+	// topo(g,n);
+	cout<<cycle(n,g);
 	
 	return 0;
 }

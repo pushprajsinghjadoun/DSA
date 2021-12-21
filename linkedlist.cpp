@@ -110,6 +110,44 @@ node* reverse(node* &head)
     }
     return preptr;
 }
+int height(node*root,int &parent,int value,int height)
+{
+    if(!curr)
+    {
+        return 0;
+    }
+    if(curr->val==value)
+    {
+        return height;
+    }
+    parent = root->data;
+    int left = height(root->left,parent,value,height+1);
+    if(left)
+    {
+        return left;
+    }
+    parent = root->data;
+    int right = height(root->right,parent,value,height+1);
+    return right;
+}
+
+bool iscousin(node*root,int x,int y)
+{
+    if(root->data==x || root->data==y)
+    {
+        return false;
+    }
+    int parent = -1;
+    int xheight = height(root,parent,x,0);
+    int yparent = -1;
+    int yHeight = heigh(root,parent,y,0);
+    if(parent!=yparent && xheight==yHeight)
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
 
 int main()
 {
@@ -126,9 +164,11 @@ int main()
     // deleteathead(head);
     // deletion(head,4);
 
-    display(head);
-    node* newhead = reverse(head);
-    display(newhead);
+    // display(head);
+    // node* newhead = reverse(head);
+    // display(newhead);
+
+    
 
     return 0;
 }

@@ -45,6 +45,7 @@ class Graph{
             if(not visited[i])
             {
                 dfshelper(i,visited);
+                
                 result++;
             }
         }

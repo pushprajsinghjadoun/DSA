@@ -1,1 +1,1 @@
-	g[b].pb(a);
+ham(start,g,paths,visit,n);
