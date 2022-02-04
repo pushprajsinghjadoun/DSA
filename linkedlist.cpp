@@ -110,44 +110,103 @@ node* reverse(node* &head)
     }
     return preptr;
 }
-int height(node*root,int &parent,int value,int height)
+
+void makecycle(node* &head, int pos)
 {
-    if(!curr)
+    node* temp = head;
+    node* startNode;
+
+    int count = 1;
+
+    while (temp->next!=NULL)
     {
-        return 0;
+        if (count==pos)
+        {
+            startNode = temp;
+        }
+        temp = temp->next;
+        count++;
     }
-    if(curr->val==value)
-    {
-        return height;
-    }
-    parent = root->data;
-    int left = height(root->left,parent,value,height+1);
-    if(left)
-    {
-        return left;
-    }
-    parent = root->data;
-    int right = height(root->right,parent,value,height+1);
-    return right;
+    temp->next = startNode;
+    
 }
 
-bool iscousin(node*root,int x,int y)
+bool detectcycle(node* &head)
 {
-    if(root->data==x || root->data==y)
+    node* slow= head;
+    node* fast = head;
+    while (fast!=NULL && fast->next!=NULL)
     {
-        return false;
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(fast == slow)
+        {
+            return true;
+        }
     }
-    int parent = -1;
-    int xheight = height(root,parent,x,0);
-    int yparent = -1;
-    int yHeight = heigh(root,parent,y,0);
-    if(parent!=yparent && xheight==yHeight)
-    {
-        return true;
-    }else{
-        return false;
-    }
+    return false;
+    
 }
+void removeCycle(node* &head)
+{
+    node* slow= head;
+    node* fast = head;
+    do
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    } while (slow!=fast);
+
+    fast = head;
+    while (slow->next!=fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    slow->next = NULL;
+    
+    
+}
+
+// int height(node*root,int &parent,int value,int height)
+// {
+//     if(!curr)
+//     {
+//         return 0;
+//     }
+//     if(curr->val==value)
+//     {
+//         return height;
+//     }
+//     parent = root->data;
+//     int left = height(root->left,parent,value,height+1);
+//     if(left)
+//     {
+//         return left;
+//     }
+//     parent = root->data;
+//     int right = height(root->right,parent,value,height+1);
+//     return right;
+// }
+
+// bool iscousin(node*root,int x,int y)
+// {
+//     if(root->data==x || root->data==y)
+//     {
+//         return false;
+//     }
+//     int parent = -1;
+//     int xheight = height(root,parent,x,0);
+//     int yparent = -1;
+//     int yHeight = heigh(root,parent,y,0);
+//     if(parent!=yparent && xheight==yHeight)
+//     {
+//         return true;
+//     }else{
+//         return false;
+//     }
+// }
 
 int main()
 {
@@ -156,7 +215,10 @@ int main()
     insertattail(head,2);
     insertattail(head,3);
     insertattail(head,4);
-    // display(head);
+    makecycle(head,2);
+    cout<<detectcycle(head);
+    removeCycle(head);
+    display(head);
     // insertathead(head,10);
     // display(head);
     // cout<<search(head,4);
