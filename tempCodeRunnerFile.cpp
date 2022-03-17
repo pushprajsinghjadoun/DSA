@@ -1,1 +1,2 @@
-display(head);
+
+    int n = v.size();

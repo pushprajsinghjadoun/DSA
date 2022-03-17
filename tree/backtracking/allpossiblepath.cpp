@@ -23,19 +23,19 @@ void help(int i,int j,int n,vector<vector<int>> &v,vector<vector<bool>> &visite,
         return;
     }
     visite[i][j]=true;
-    if(i+1<n and visite[i+1][j]==false)
+    if(i+1<n and v[i+1][j]==0 and visite[i+1][j]==false)
     {
         help(i+1,j,n,v,visite,total);
     }
-    if(i-1>=0 and visite[i-1][j]==false)
+    if(i-1>=0 and v[i-1][j]==0 and visite[i-1][j]==false)
     {
         help(i-1,j,n,v,visite,total);
     }
-    if(j+1<n and visite[i][j+1]==false)
+    if(j+1<n and v[i][j+1]==0 and visite[i][j+1]==false)
     {
         help(i,j+1,n,v,visite,total);
     }
-    if(j-1>=0 and  visite[i][j-1]==false)
+    if(j-1>=0 and v[i][j-1]==0 and  visite[i][j-1]==false)
     {
         help(i,j-1,n,v,visite,total);
     }
@@ -54,7 +54,7 @@ int allpath(vector<vector<int>> &v)
 
 int main()
 {
-    vector<vector<int>> v= {{0,1,0},{0,0,0},{1,1,0}};
+    vector<vector<int>> v= {{0,1,0},{0,0,0},{0,0,0}};
     cout<<allpath(v)<<endl;
     for(int i=0;i<3;i++)
     {

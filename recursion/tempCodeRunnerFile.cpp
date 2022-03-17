@@ -1,1 +1,1 @@
-mazepaths(0,0,3,3,"");
+string result = TO_LOWER(str);
