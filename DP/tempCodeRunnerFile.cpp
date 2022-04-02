@@ -1,1 +1,1 @@
-abs(v[ind]-v[ind-1]
+int notpicked = f(v,n-1);
