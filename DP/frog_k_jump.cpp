@@ -14,7 +14,7 @@ int f(int ind,vector<int>&v,vector<int>&dp,int k)
         int temp = INT_MAX;
         if(ind-i>=0)
         {
-            temp = f(ind-1,v,dp,k)+ abs(v[ind]-v[ind-i]);
+            temp = f(ind-i,v,dp,k)+ abs(v[ind]-v[ind-i]);
         }
         minsub = min(minsub,temp);
     }
